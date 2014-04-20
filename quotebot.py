@@ -34,6 +34,7 @@ def get_quote():
 				print(line,end='')
 				return;
 		count+=1
+	f.close()
 	get_quote()
 if len(sys.argv) > 2:
 	exit()
