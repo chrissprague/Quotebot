@@ -1,7 +1,8 @@
 import random
 import sys
+absolute_path = (str)(sys.argv[0])[:-11] + "quotes"
 def add_quote(string):
-	f = open("quotes", "r+")
+	f = open(absolute_path, "r+")
 	first_quote = True
 	original = string
 	while ( True ) :
@@ -16,7 +17,7 @@ def add_quote(string):
 	print('Quote added: "'+original+'"')
 	f.close()
 def get_quote():
-	f = open("quotes","r+")
+	f = open(absolute_path,"r+")
 	num_lines = 0
 	for line in f:
 		num_lines+=1
@@ -36,9 +37,10 @@ def get_quote():
 		count+=1
 	f.close()
 	get_quote()
-if len(sys.argv) > 2:
-	exit()
-if len(sys.argv) == 2:
-	add_quote((str)(sys.argv[1]))
-else:
-	get_quote()
+if __name__ == "__main__":
+	if len(sys.argv) > 2:
+		exit()
+	if len(sys.argv) == 2:
+		add_quote((str)(sys.argv[1]))
+	else:
+		get_quote()
