@@ -1,0 +1,8 @@
+if [ ${#BASH_ARGV[@]} == 1 ] ; 
+then
+	python3 quotebot.py ${BASH_ARGV[0]}
+fi
+if [ ${#BASH_ARGV[@]} == 0 ] ;
+then
+	python3 quotebot.py
+fi
