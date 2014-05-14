@@ -12,7 +12,7 @@ def get_quote():
 	count = 0
 	target = random.randint(0, num_lines+1)
 	f.close()
-	f=open("quotes","r+")
+	f=open(absolute_path,"r+")
 	for line in f:
 		if count == target:
 			if line == '' or line == '\n' or line == '\0':
@@ -29,6 +29,7 @@ def get_quote():
 	get_quote()
 if __name__ == "__main__":
 	if len(sys.argv) > 2:
+		print("Usage: quote [quote_to_add]")
 		exit()
 	if len(sys.argv) == 2:
 		add_quote((str)(sys.argv[1]))
