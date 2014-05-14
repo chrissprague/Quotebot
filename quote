@@ -1,8 +1,9 @@
 # quote; script to run quotebot.py
+# author: Christopher Sprague
 
 file_existed=true # used to not try to get a quote when file was missing
 
-if ! [ -e ~/bin/quotes ] ;
+if ! [ -e ~/bin/quotes ] ; # check if file exists and plan accordingly
 then
 	echo -ne "Missing file: \"quotes\", creating. . . "
 	touch ~/bin/quotes
@@ -10,20 +11,20 @@ then
 	file_existed=false
 fi
 
-if [ ${#BASH_ARGV[@]} == 1 ] ; 
+if [ ${#BASH_ARGV[@]} == 1 ] ; # user gives us a quote
 then
-	if [ "${BASH_ARGV[0]}" == "--reset" ] ;
+	if [ "${BASH_ARGV[0]}" == "--reset" ] ; # user wants to reset quotes file
 	then
 		echo -ne "Resetting quotes. . . " 
 		rm ~/bin/quotes
 		touch ~/bin/quotes
 		echo "done."
 	else
-		python3 ~/bin/quotebot.py ${BASH_ARGV[0]}
+		python3 ~/bin/quotebot.py ${BASH_ARGV[0]} # use enters a quote
 	fi
 fi
 
-if [ ${#BASH_ARGV[@]} == 0 ] ;
+if [ ${#BASH_ARGV[@]} == 0 ] ; # user wants to get a quote
 then
 	if $file_existed ;
 	then
