@@ -2,6 +2,9 @@
 __pycache__/
 *.py[cod]
 
+# "quotes" text file
+quotes
+
 # C extensions
 *.so
 

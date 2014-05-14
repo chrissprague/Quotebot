@@ -1,20 +1,8 @@
-import random
-import sys
-absolute_path = (str)(sys.argv[0])[:-11] + "quotes"
+import random, sys, os
+absolute_path = os.path.expanduser('~/bin/quotes')
 def add_quote(string):
-	f = open(absolute_path, "r+")
-	first_quote = True
-	original = string
-	while ( True ) :
-		if f.readline() == "":
-			break
-		first_quote = False
-	if first_quote == True :
-		string=(str)(string)
-	else:
-		string="\n"+(str)(string)
-	f.write(string)
-	print('Quote added: "'+original+'"')
+	with open (absolute_path, 'a') as f: f.write (string+"\n")
+	print('Quote added: "'+string+'"')
 	f.close()
 def get_quote():
 	f = open(absolute_path,"r+")
@@ -22,14 +10,16 @@ def get_quote():
 	for line in f:
 		num_lines+=1
 	count = 0
-	target = random.randint(0, num_lines)
+	target = random.randint(0, num_lines+1)
 	f.close()
 	f=open("quotes","r+")
 	for line in f:
 		if count == target:
 			if line == '' or line == '\n' or line == '\0':
+				f.close()
 				get_quote() # try again
 			elif '\n' not in line:
+				f.close()
 				get_quote() # try again
 			else:
 				print(line,end='')
