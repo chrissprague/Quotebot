@@ -1,6 +1,14 @@
 if [ ${#BASH_ARGV[@]} == 1 ] ; 
 then
-	python3 ~/bin/quotebot.py ${BASH_ARGV[0]}
+	if [ "${BASH_ARGV[1]}" = "--reset" ] ;
+	then
+		echo -ne "Resetting quotes. . . " 
+		rm ~/bin/quotes
+		touch ~/bin/quotes
+		echo "done."
+	else
+		python3 ~/bin/quotebot.py ${BASH_ARGV[0]}
+	fi
 fi
 if [ ${#BASH_ARGV[@]} == 0 ] ;
 then
